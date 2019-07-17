@@ -35,6 +35,6 @@ Uses libraries:
 - ```make clean-bin```: Clears bin directory of engine (not including sub-directories)
 ----
 ## Links:
-**Trello:** [https://trello.com/b/bgSspJZA/cppmodellibrary](https://trello.com/b/bgSspJZA/cppmodellibrary "Hi there :)") 
-**GitHub:** [https://github.com/popwser/CPPModelLibrary](https://github.com/popwser/CPPModelLibrary "How are you today") 
-**Good Markdown Editor**: [https://pandao.github.io/editor.md](https://pandao.github.io/editor.md "I hope you are well :D") 
+**Trello:** [https://trello.com/b/bgSspJZA/cppmodellibrary](https://trello.com/b/bgSspJZA/cppmodellibrary "Hi there :)")  
+**GitHub:** [https://github.com/popwser/CPPModelLibrary](https://github.com/popwser/CPPModelLibrary "How are you today")  
+**Good Markdown Editor**: [https://pandao.github.io/editor.md](https://pandao.github.io/editor.md "I hope you are well :D")  
