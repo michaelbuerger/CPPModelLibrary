@@ -15,8 +15,8 @@
 - VRML/X3D
 ----
 ## Notes:
-CPP Version: 17
-Uses libraries: 
+CPP Version: 17  
+Uses libraries:  
 - spdlog (included, required)
 - cloc (not included, not required)
 - valgrind (not included, not required)
