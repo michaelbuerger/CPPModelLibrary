@@ -5,7 +5,7 @@ set (CPPModelLibrary_VERSION_MAJOR 0)
 set (CPPModelLibrary_VERSION_MINOR 1)
 set (CPPModelLibrary_VERSION_PATCH 0)
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++14")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++17")
 
 set (source_dir "${PROJECT_SOURCE_DIR}/src")
 set (header_dir "${PROJECT_SOURCE_DIR}/include")
