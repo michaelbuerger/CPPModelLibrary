@@ -21,47 +21,39 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <array>
+#include <stdio.h>
 
 #include "CPPML/logging/logging.hpp"
 #include "CPPML/useful.hpp"
+#include "CPPML/loading/loading.hpp"
+#include "CPPML/loading/OBJ.hpp"
 
 using namespace CPPML;
 using namespace logging;
+using namespace loading;
 
 int main()
 {
-    std::cout << "Hello, World" << std::endl;
-
     Log::Init();
-    CPPML_INFO("Started CPPML");
+    CPPML_TRACE("Started CPPML");
 
-    std::unique_ptr<float[]> data;
-    std::unique_ptr<uint[]> indices;
-    uint vertexCount;
-    uint dataBytes;
-    uint indicesBytes;
+    std::unique_ptr<std::vector<std::array<float, 3>>> vertices;
+    std::unique_ptr<std::vector<std::array<float, 2>>> texcoords;
+    std::unique_ptr<std::vector<std::array<float, 3>>> normals;
 
-    LoadOBJFile("resources/models/square.obj", data, indices, vertexCount, dataBytes, indicesBytes);
+    const char* modelAddress = "resources/models/cube.obj";
 
-    std::cout << "Data: " << std::endl;
-    for(size_t i=0;i<vertexCount;i++)
-    {
-        std::cout << "[ ";
-        for(size_t j=0;j<8;j++)
-        {
-            std::cout << data[i*j] << ", ";
-        }
-        std::cout << "]" << std::endl;
+    FILE* model = TryOpenFile("resources/models/cube.obj");
+    if(model == nullptr) {
+        CPPML_ERROR("Could not open model at \"{}\".", modelAddress);
+        return -1;
     }
+    CPPML_TRACE("Successfully opened model at \"{}\".", modelAddress);
 
-    std::cout << std::endl << "Indices: " << std::endl;
+    LoadOBJFile(model, vertices, texcoords, normals);
 
-    std::cout << "[ ";
-    for(size_t i=0;i<vertexCount;i++)
-    {
-        std::cout << indices[i] << ", ";
-    }
-    std::cout << "]" << std::endl;
+    fclose(model);
 
     return 0;
 }
