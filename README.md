@@ -1,7 +1,30 @@
 # CPPModelLibrary
 ###### Ideals: Fast, Cross-Platform, Easy to use with OpenGL and Direct3D.
 ###### Please note that my main priority is to create a minimum viable product for use with [GLEngine](https://github.com/popwser/GLEngine).
-----
+### Notes:
+CPP Version: 17  
+Uses libraries:  
+- spdlog (included, required)
+- cloc (not included, not required)
+- valgrind (not included, not required)
+## Including In Your Own Project (with CMake)
+**Step 1:** Clone CPPModelLibrary from GitHub
+```git clone https://github.com/popwser/CPPModelLibrary.git```
+  
+**Step 2:** Change into the project directory and delete main.cpp
+```cd CPPModelLibrary && rm src/main.cpp```
+  
+**Step 3:** Add the project as a subdirectory of your CMake project
+```add_subdirectory ("${PROJECT_SOURCE_DIR}/CPPModelLibrary/")```
+  
+**Step 4:** Within **target_include_directories** add the following line
+```CPPModelLibrary/include/```
+  
+**That's it! You've successfully included CPPModelLibrary in your project.**
+
+## Getting Started
+TODO
+
 ## Model formats to support reading from and writing to (likely in this order):
 #### Priority:
 - ASCII OBJ
@@ -14,15 +37,7 @@
 - IGES
 - STEP
 - VRML/X3D
-----
-## Notes:
-CPP Version: 17  
-Uses libraries:  
-- spdlog (included, required)
-- cloc (not included, not required)
-- valgrind (not included, not required)
-----
-## Running
+## makefile usage (for contributors)
 **The following commands can be run from a terminal in the project directory**:
 
 - ```make all``` or ```make```: Says what each make function does
@@ -34,8 +49,6 @@ Uses libraries:
 - ```make line-count```: Queries line counts of various parts of the library's code
 - ```make clean```: Runs all of the following clean commands
 - ```make clean-bin```: Clears bin directory of engine (not including sub-directories)
-----
 ## Links:
 **Trello:** [https://trello.com/b/bgSspJZA/cppmodellibrary](https://trello.com/b/bgSspJZA/cppmodellibrary "Hi there :)")  
 **GitHub:** [https://github.com/popwser/CPPModelLibrary](https://github.com/popwser/CPPModelLibrary "How are you today")  
-**Good Markdown Editor**: [https://pandao.github.io/editor.md](https://pandao.github.io/editor.md "I hope you are well :D")  
