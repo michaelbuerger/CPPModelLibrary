@@ -1,5 +1,5 @@
-#ifndef LOG_HPP
-#define LOG_HPP
+#ifndef CPPML_LOG_HPP
+#define CPPML_LOG_HPP
 
 #include <memory>
 #include "spdlog/spdlog.h"
@@ -18,7 +18,7 @@ namespace CPPML {
 
 }
 
-#endif /* end of include guard LOG_HPP */
+#endif /* end of include guard CPPML_LOG_HPP */
 
 #define CPPML_TRACE(...) CPPML::Log::GetLogger()->trace(__VA_ARGS__)
 #define CPPML_INFO(...) CPPML::Log::GetLogger()->info(__VA_ARGS__)

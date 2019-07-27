@@ -13,10 +13,7 @@ namespace CPPML {
 // TODO: Version of LoadOBJFile that returns unique_ptrs to 1d arrays
 
 /* Must export: Triangles, Vertices, Texcoords, and Normals */
-bool LoadOBJFile(FILE *file, 
-std::unique_ptr<std::array<float, 3>[]>& ret_vertices, 
-std::unique_ptr<std::array<float, 2>[]>& ret_texcoords, 
-std::unique_ptr<std::array<float, 3>[]>& ret_normals, uint& vertexCount) {
+bool LoadOBJFile(FILE *file, std::unique_ptr<float[]>& ret_vertices, std::unique_ptr<float[]>& ret_texcoords, std::unique_ptr<float[]>& ret_normals, uint& vertexCount) {
     auto tempVertices = std::vector<std::array<float, 3>>();
     auto tempTexcoords = std::vector<std::array<float, 2>>();
     auto tempNormals = std::vector<std::array<float, 3>>();
@@ -90,14 +87,21 @@ std::unique_ptr<std::array<float, 3>[]>& ret_normals, uint& vertexCount) {
     CPPML_TRACE("In method \"LoadOBJFile\". Reached EOF.");
 
     vertexCount = tempIndices.size();
-    ret_vertices = std::make_unique<std::array<float, 3>[]>(vertexCount);
-    ret_texcoords = std::make_unique<std::array<float, 2>[]>(vertexCount);
-    ret_normals = std::make_unique<std::array<float, 3>[]>(vertexCount);
+    ret_vertices = std::make_unique<float[]>(vertexCount*3);
+    ret_texcoords = std::make_unique<float[]>(vertexCount*2);
+    ret_normals = std::make_unique<float[]>(vertexCount*3);
 
     for(size_t i=0; i<vertexCount; i++) {
-        ret_vertices[i] = tempVertices[tempIndices[i][0]];
-        ret_texcoords[i] = tempTexcoords[tempIndices[i][1]];
-        ret_normals[i] = tempNormals[tempIndices[i][2]];
+        ret_vertices[i] = tempVertices[tempIndices[i][0]][0];
+        ret_vertices[i] = tempVertices[tempIndices[i][0]][1];
+        ret_vertices[i] = tempVertices[tempIndices[i][0]][2];
+
+        ret_texcoords[i] = tempTexcoords[tempIndices[i][1]][0];
+        ret_texcoords[i] = tempTexcoords[tempIndices[i][1]][1];
+
+        ret_normals[i] = tempNormals[tempIndices[i][2]][0];
+        ret_normals[i] = tempNormals[tempIndices[i][2]][1];
+        ret_normals[i] = tempNormals[tempIndices[i][2]][2];
     }
 
     return true;

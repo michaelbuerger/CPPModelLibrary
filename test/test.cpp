@@ -17,9 +17,9 @@ int main() {
 
     FILE* model = OpenFile("test/models/cube.obj");
 
-    std::unique_ptr<std::array<float, 3>[]> vertices;
-    std::unique_ptr<std::array<float, 2>[]> texcoords;
-    std::unique_ptr<std::array<float, 3>[]> normals;
+    std::unique_ptr<float[]> vertices;
+    std::unique_ptr<float[]> texcoords;
+    std::unique_ptr<float[]> normals;
     uint vertexCount;
 
     bool success = LoadOBJFile(model, vertices, texcoords, normals, vertexCount);
