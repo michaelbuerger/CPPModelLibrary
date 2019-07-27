@@ -9,18 +9,25 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++17")
 
 set (source_dir "${PROJECT_SOURCE_DIR}/src")
 set (header_dir "${PROJECT_SOURCE_DIR}/include")
-set (test_dir "${PROJECT_SOURCE_DIR}/test")
 
 file (GLOB_RECURSE source_files "${source_dir}/*.cpp")
 file (GLOB_RECURSE header_files "${header_dir}/*.hpp" "${header_dir}/*.h")
 
-set (EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/bin")
-
-add_executable (CPPModelLibrary ${source_files} ${header_files})
+add_library (CPPModelLibrary STATIC ${source_files})
 
 target_link_libraries (CPPModelLibrary)
 target_include_directories (
-	CPPModelLibrary PRIVATE
+    CPPModelLibrary PRIVATE
     include/
-	spdlog-1.x/include/
+    spdlog-1.x/include/
+)
+
+set (EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/test")
+add_executable (CPPModelLibrary_test ${source_files} ${PROJECT_SOURCE_DIR}/test/test.cpp)
+
+target_link_libraries (CPPModelLibrary_test)
+target_include_directories (
+    CPPModelLibrary_test PRIVATE
+    include/
+    spdlog-1.x/include/
 )

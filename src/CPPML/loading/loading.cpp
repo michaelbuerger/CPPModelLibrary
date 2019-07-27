@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-namespace CPPML { namespace loading {
+namespace CPPML {
 
 FILE* OpenFile(const char* address) {
     FILE* file = fopen(address, "r"); // tries to open file at address and creates buffer (heap allocated)
@@ -16,4 +16,4 @@ FILE* OpenFile(const char* address) {
     return file;
 }
 
-}}
+}

@@ -3,10 +3,10 @@
 
 #include <stdio.h>
 
-namespace CPPML { namespace loading {
+namespace CPPML {
 
 FILE* OpenFile(const char* address);
 
-}}
+}
 
 #endif
