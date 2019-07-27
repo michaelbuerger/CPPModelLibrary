@@ -8,10 +8,11 @@
 
 namespace CPPML { namespace loading {
 
+/* Must export: Triangles, Vertices, Texcoords, and Normals */
 bool LoadOBJFile(FILE *file, 
-const std::unique_ptr<std::vector<std::array<float, 3>>>& vertices, 
-const std::unique_ptr<std::vector<std::array<float, 2>>>& texcoords, 
-const std::unique_ptr<std::vector<std::array<float, 3>>>& normals);
+std::unique_ptr<std::array<float, 3>[]>& ret_vertices, 
+std::unique_ptr<std::array<float, 2>[]>& ret_texcoords, 
+std::unique_ptr<std::array<float, 3>[]>& ret_normals, uint& vertexCount);
 
 }}
 

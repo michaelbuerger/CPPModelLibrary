@@ -19,6 +19,8 @@ namespace CPPML { namespace logging
 
 }}
 
+// TODO: Turn this off by default for library release, allow individual levels to be enabled
+
 #ifndef CPPML_DEBUG_LOG_OFF
 
 #define CPPML_TRACE(...) CPPML::logging::Log::GetLogger()->trace(__VA_ARGS__)

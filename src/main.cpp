@@ -12,8 +12,6 @@
  * https://en.wikipedia.org/wiki/Lexical_analysis
  * https://en.wikipedia.org/wiki/Regular_expression
  * https://www.regexbuddy.com/regex.html
- * http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/#reading-the-file
- * NOTE ^^^^ Use of C's fscanf to read patterns in strings to data structures
  */
 
 #include <iostream>
@@ -38,20 +36,16 @@ int main()
     Log::Init();
     CPPML_TRACE("Started CPPML");
 
-    std::unique_ptr<std::vector<std::array<float, 3>>> vertices;
-    std::unique_ptr<std::vector<std::array<float, 2>>> texcoords;
-    std::unique_ptr<std::vector<std::array<float, 3>>> normals;
-
     const char* modelAddress = "resources/models/cube.obj";
 
-    FILE* model = TryOpenFile("resources/models/cube.obj");
-    if(model == nullptr) {
-        CPPML_ERROR("Could not open model at \"{}\".", modelAddress);
-        return -1;
-    }
-    CPPML_TRACE("Successfully opened model at \"{}\".", modelAddress);
+    FILE* model = OpenFile(modelAddress);
 
-    LoadOBJFile(model, vertices, texcoords, normals);
+    std::unique_ptr<std::array<float, 3>[]> vertices;
+    std::unique_ptr<std::array<float, 2>[]> texcoords;
+    std::unique_ptr<std::array<float, 3>[]> normals; // Create struct for this
+    uint vertexCount;
+
+    LoadOBJFile(model, vertices, texcoords, normals, vertexCount);
 
     fclose(model);
 

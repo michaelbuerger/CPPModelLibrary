@@ -5,7 +5,7 @@
 
 namespace CPPML { namespace loading {
 
-FILE* TryOpenFile(const char* address);
+FILE* OpenFile(const char* address);
 
 }}
 
