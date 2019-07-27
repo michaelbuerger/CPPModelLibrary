@@ -16,8 +16,6 @@ file (GLOB_RECURSE header_files "${header_dir}/*.hpp" "${header_dir}/*.h")
 
 set (EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/bin")
 
-add_subdirectory ("${PROJECT_SOURCE_DIR}/spdlog-1.x/")
-
 add_executable (CPPModelLibrary ${source_files} ${header_files})
 
 target_link_libraries (CPPModelLibrary)
