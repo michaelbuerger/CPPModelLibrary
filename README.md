@@ -1,5 +1,6 @@
 # CPPModelLibrary
-###### Ideals: Fast, Cross-Platform, Easy to use with OpenGL and Direct3D
+###### Ideals: Fast, Cross-Platform, Easy to use with OpenGL and Direct3D.
+###### Please note that my main priority is to create a minimum viable product for use with [GLEngine](https://github.com/popwser/GLEngine).
 ----
 ## Model formats to support reading from and writing to (likely in this order):
 #### Priority:
