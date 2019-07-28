@@ -13,15 +13,14 @@ namespace CPPML {
 // TODO: Version of LoadOBJFile that returns unique_ptrs to 1d arrays
 
 /* Must export: Triangles, Vertices, Texcoords, and Normals */
-bool LoadOBJFile(FILE *file, 
-std::unique_ptr<std::array<float, 3>[]>& ret_vertices, 
-std::unique_ptr<std::array<float, 2>[]>& ret_texcoords, 
-std::unique_ptr<std::array<float, 3>[]>& ret_normals, uint& vertexCount) {
+bool LoadOBJFile(FILE *file, std::unique_ptr<float[]>& ret_vertices, std::unique_ptr<float[]>& ret_texcoords, std::unique_ptr<float[]>& ret_normals, uint& vertexCount) {
     auto tempVertices = std::vector<std::array<float, 3>>();
     auto tempTexcoords = std::vector<std::array<float, 2>>();
     auto tempNormals = std::vector<std::array<float, 3>>();
 
-    auto tempIndices = std::vector<std::array<uint, 3>>();
+    auto vertexIndices = std::vector<uint>();
+    auto texcoordIndices = std::vector<uint>();
+    auto normalIndices = std::vector<uint>();
 
     // Error handling related stuff
     int currentLine = 1;
@@ -75,10 +74,17 @@ std::unique_ptr<std::array<float, 3>[]>& ret_normals, uint& vertexCount) {
                 CPPML_ERROR("Note: An EOF error can be produced if face specifications don't have the right structure, or are missing information (make sure your export settings are correct and include vertices, texture coordinates, and normals)");
                 return false;
             }
+            vertexIndices.push_back(vi0-1);   // x/o/o
+            texcoordIndices.push_back(ti0-1); // o/x/o
+            normalIndices.push_back(ni0-1);   // o/o/x
 
-            tempIndices.push_back({ vi0 - 1, ti0 - 1, ni0 - 1 });
-            tempIndices.push_back({ vi1 - 1, ti1 - 1, ni1 - 1 });
-            tempIndices.push_back({ vi2 - 1, ti2 - 1, ni2 - 1 });
+            vertexIndices.push_back(vi1-1);   // x/o/o
+            texcoordIndices.push_back(ti1-1); // o/x/o
+            normalIndices.push_back(ni1-1);   // o/o/x
+
+            vertexIndices.push_back(vi2-1);   // x/o/o
+            texcoordIndices.push_back(ti2-1); // o/x/o
+            normalIndices.push_back(ni2-1);   // o/o/x
         } else { // TODO: Implement ifs for all possible headers (including comment), then add error if unknown header is reached
             CPPML_TRACE("In method \"LoadOBJFile\". Line header of line {} was ignored: \"{}\"", currentLine, header);
             if(ScanTillNewline(file) == EOF) { // reads till new-line, effectively skips to next line
@@ -89,15 +95,22 @@ std::unique_ptr<std::array<float, 3>[]>& ret_normals, uint& vertexCount) {
     }
     CPPML_TRACE("In method \"LoadOBJFile\". Reached EOF.");
 
-    vertexCount = tempIndices.size();
-    ret_vertices = std::make_unique<std::array<float, 3>[]>(vertexCount);
-    ret_texcoords = std::make_unique<std::array<float, 2>[]>(vertexCount);
-    ret_normals = std::make_unique<std::array<float, 3>[]>(vertexCount);
+    vertexCount = vertexIndices.size();
+    ret_vertices = std::make_unique<float[]>(vertexCount*3);
+    ret_texcoords = std::make_unique<float[]>(vertexCount*2);
+    ret_normals = std::make_unique<float[]>(vertexCount*3);
 
     for(size_t i=0; i<vertexCount; i++) {
-        ret_vertices[i] = tempVertices[tempIndices[i][0]];
-        ret_texcoords[i] = tempTexcoords[tempIndices[i][1]];
-        ret_normals[i] = tempNormals[tempIndices[i][2]];
+        ret_vertices[(i*3)] = tempVertices[vertexIndices[i]][0];
+        ret_vertices[(i*3)+1] = tempVertices[vertexIndices[i]][1];
+        ret_vertices[(i*3)+2] = tempVertices[vertexIndices[i]][2];
+
+        ret_texcoords[(i*2)] = tempTexcoords[texcoordIndices[i]][0];
+        ret_texcoords[(i*2)+1] = tempTexcoords[texcoordIndices[i]][1];
+
+        ret_normals[(i*3)] = tempNormals[normalIndices[i]][0];
+        ret_normals[(i*3)+1] = tempNormals[normalIndices[i]][1];
+        ret_normals[(i*3)+2] = tempNormals[normalIndices[i]][2];
     }
 
     return true;
