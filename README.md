@@ -4,7 +4,9 @@
 
 ###### Please note that my main priority is to create a minimum viable product for use with [GLEngine](https://github.com/popwser/GLEngine).
 
-**All documentation is being moved over to [GitHub Pages](https://popwser.github.io/CPPModelLibrary)**
+**All documentation is being moved over to [GitHub Pages](https://popwser.github.io/CPPModelLibrary)**  
+GitHub Pages Build Status:
+[![Build Status](https://travis-ci.org/popwser/productive.svg?branch=master)](https://travis-ci.org/popwser/productive)
 
 ### Notes:
 
