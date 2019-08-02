@@ -4,6 +4,8 @@
 
 ###### Please note that my main priority is to create a minimum viable product for use with [GLEngine](https://github.com/popwser/GLEngine).
 
+**All documentation is being moved over to [GitHub Pages](https://popwser.github.io/CPPModelLibrary)**
+
 ### Notes:
 
 CPP Version: 17  
