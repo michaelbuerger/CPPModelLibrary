@@ -15,19 +15,19 @@ file (GLOB_RECURSE header_files "${header_dir}/*.hpp" "${header_dir}/*.h")
 
 add_library (CPPModelLibrary STATIC ${source_files})
 
-target_link_libraries (CPPModelLibrary)
+target_link_libraries (CPPModelLibrary ${PROJECT_SOURCE_DIR}/spdlog-1.9.2/build/libspdlog.a)
 target_include_directories (
     CPPModelLibrary PRIVATE
     include/
-    spdlog-1.x/include/
+    spdlog-1.9.2/include/
 )
 
 set (EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/test")
 add_executable (CPPModelLibrary_test ${source_files} ${PROJECT_SOURCE_DIR}/test/test.cpp)
 
-target_link_libraries (CPPModelLibrary_test)
+target_link_libraries (CPPModelLibrary_test ${PROJECT_SOURCE_DIR}/spdlog-1.9.2/build/libspdlog.a)
 target_include_directories (
     CPPModelLibrary_test PRIVATE
     include/
-    spdlog-1.x/include/
+    spdlog-1.9.2/include/
 )
