@@ -13,7 +13,7 @@ build-project: # Builds project using setup cmake files
 qea:
 	make make-project
 	make build-project
-	./test/CPPModelLibrary_test
+	./build/test/Test
 
 line-count:
 	@echo "Getting line count of all project files (no 3rd party libraries etc.)..."
